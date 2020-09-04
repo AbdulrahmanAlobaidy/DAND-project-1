@@ -42,7 +42,7 @@ for row in csvReader:
 #number of rows
 n = len(rows)
 
-#variable to count the numbers to 
+#variable to keep track of the years in a block
 count = 0
 
 #variable to keep track of the position where the for loop has reached in the rows list
