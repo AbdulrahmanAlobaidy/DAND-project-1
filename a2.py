@@ -71,7 +71,7 @@ for row in rows:
 	#increase the position by one
 	pos = pos + 1
 
-	#deconstruct the row to three variables
+	#deconstruct the row into three variables
 	year, g, l = row
 
 
