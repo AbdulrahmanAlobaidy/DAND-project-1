@@ -1,3 +1,5 @@
+#mm for moving mean a.k.a. moving average
+
 import csv
 import logging
 
@@ -8,17 +10,17 @@ def moveMean(l):
 
 
 
-logging.basicConfig(level=None)
+logging.basicConfig(level=logging.DEBUG)
 
 
 # the number of years to take as a whole block, that is to count the moving average of a block-amount of years
-block = 25
+block = 10
 
 
-#open local_data csv file
-fi = open('local_data.csv', 'r')
+#open global_local data csv file
+fi = open('comparison.csv', 'r')
 #create movingMean csv file
-fo = open('_movingMean-' + str(block) + '-block.csv', 'w', newline='')
+fo = open('movingMean-' + str(block) + '-block.csv', 'w', newline='')
 
 #start reading the csv data from fi
 csvReader = csv.reader(fi)
@@ -75,6 +77,7 @@ for row in rows:
 	year, g, l = row
 
 
+
 	#set the start year of the block only if we are at the beginning of the block i.e. count = 0
 	if count == 0:
 		tmp['year'] = year
@@ -89,7 +92,7 @@ for row in rows:
 
 
 
-	#if ( the years in a block are completer AND the remaining years qualify for at least one block ) OR the position is at last i.e. n == pos, then process the information in this block
+	#if ( the years in a block are complete AND the remaining years qualify for at least one block ) OR the position is at last i.e. n == pos, then process the information in this block
 	if ( count % block == 0 and n - pos >= block ) or n == pos:
 
 		#put the number of rows in this block

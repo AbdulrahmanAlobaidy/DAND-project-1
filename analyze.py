@@ -44,6 +44,9 @@ total_diff = total_g_g_diff = total_l_l_diff = 0
 
 total_g = total_l = 0
 
+first_g = last_g = None
+first_l = last_l = None
+
 #store rows in the rows list
 for row in csvReader:
 
@@ -66,6 +69,8 @@ for row in csvReader:
 		min_diff = max_diff = diff
 		min_g_g_diff = min_l_l_diff = 999999
 		max_g_g_diff = max_l_l_diff = -999999
+		first_g = g
+		first_l = l
 		started = True
 	else:
 		g_g_diff = g - prev_g
@@ -159,6 +164,10 @@ for row in csvReader:
 
 	prev_year = year
 
+	last_g = g
+	last_l = l
+
+
 	rows.append(row)
 
 
@@ -168,6 +177,14 @@ for row in csvReader:
 
 #number of rows or years
 n = len(rows)
+
+
+#difference between global at beginning and end of the data set
+g_diff = last_g - first_g
+
+#difference between local at beginning and end of the data set
+l_diff = last_l - first_l
+
 
 #calculate averages
 avg_g = total_g / n
@@ -209,6 +226,9 @@ print('avg_l', round(avg_l, 2))
 print('avg_diff', round(avg_diff, 2))
 print('avg_g_g_diff', round(avg_g_g_diff, 2))
 print('avg_l_l_diff', round(avg_l_l_diff, 2))
+
+print('g_diff', round(g_diff, 2))
+print('l_diff', round(l_diff, 2))
 
 #close files' streams
 fi.close()
